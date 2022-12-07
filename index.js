@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+const swaggerUI = require('swagger-ui-express');
+const swaggerFile = require('./swagger_output.json')
+
+
 const predmetRouter = require('./routes/predmet');
 const nastavnikRouter = require('./routes/nastavnik');
 const grupaRouter = require('./routes/grupa');
@@ -20,6 +24,13 @@ app.use(
     extended: true,
   })
 );
+app.use(
+  '/swagger',
+  swaggerUI.serve, 
+  swaggerUI.setup(swaggerFile)
+);
+
+
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
