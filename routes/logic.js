@@ -1,12 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const logic = require('../services/logic');
 var http = require('http');
 
-
-async function getRaspored(options,postData){
-  
-}
 
 router.post('/', async function(req, res, next) {
 
