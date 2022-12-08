@@ -14,6 +14,7 @@ const rasporedRouter = require('./routes/raspored');
 const skolaRouter = require('./routes/skola');
 const terminRouter = require('./routes/termin');
 const ucionicaRouter = require('./routes/ucionica');
+const logicRouter = require('./routes/logic');
 
 
 
@@ -35,7 +36,7 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 
-// Predmet GET
+// Predmet 
 app.use("/predmet", predmetRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -44,7 +45,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Nastavnik GET
+// Nastavnik 
 app.use("/nastavnik", nastavnikRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -53,7 +54,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Grupa GET
+// Grupa 
 app.use("/grupa", grupaRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -62,7 +63,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Predavanje GET
+// Predavanje 
 app.use("/predavanje", predavanjeRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -71,7 +72,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Raspored GET
+// Raspored 
 app.use("/raspored", rasporedRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -80,7 +81,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Skola GET
+// Skola 
 app.use("/skola", skolaRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -89,7 +90,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Termin GET
+// Termin 
 app.use("/termin", terminRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -98,8 +99,17 @@ app.use((err, req, res, next) => {
   return;
 });
 
-// Ucionica GET
+// Ucionica 
 app.use("/ucionica", ucionicaRouter);
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  console.error(err.message, err.stack);
+  res.status(statusCode).json({ message: err.message });
+  return;
+});
+
+// Logic 
+app.use("/logic", logicRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
