@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const cors = require('cors');
 
 const swaggerUI = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json')
@@ -30,6 +31,7 @@ app.use(
   swaggerUI.serve, 
   swaggerUI.setup(swaggerFile)
 );
+app.use(cors());
 
 
 app.get("/", (req, res) => {
