@@ -5,7 +5,7 @@ const config = require('../config');
 async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT id,predmet_id,nastavnik_id,grupa_id FROM predavanje LIMIT ${offset},${config.listPerPage}`
+    `SELECT id,predmet_id,nastavnik_id,grupa_id, broj_casova, skola_id FROM predavanje LIMIT ${offset},${config.listPerPage}`
   );
   const data = helper.emptyOrRows(rows);
   const meta = {page};
