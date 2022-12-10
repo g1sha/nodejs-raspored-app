@@ -10,8 +10,8 @@ router.post('/', async function(req, res, next) {
     
   const options = {
     "method": "POST",
-    "hostname": "159.69.23.94",
-    "port": "3002",
+    "hostname": "logic.leftjoin.ba",
+    "port": null,
     "path": "/timeTable/solve?=",
     "headers": {
       "Content-Type": "application/json"

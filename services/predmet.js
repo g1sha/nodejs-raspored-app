@@ -16,6 +16,28 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getQuery(skola_id){
+  const rows = await db.query(
+    `SELECT id,naslov,css,skola_id FROM predmet WHERE skola_id=${skola_id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
+async function getSingle(predmetid){
+  const rows = await db.query(
+    `SELECT id,naslov,css,skola_id FROM predmet WHERE id=${predmetid}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(predmet){
   const result = await db.query(
     `INSERT INTO predmet 
@@ -35,5 +57,7 @@ async function create(predmet){
 
 module.exports = {
   getMultiple,
-  create
+  create,
+  getSingle,
+  getQuery
 }

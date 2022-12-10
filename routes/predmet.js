@@ -11,6 +11,24 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.get('/filter/', async function(req, res, next) {
+  try {
+    res.json(await predmet.getQuery(req.query.skola_id));
+  } catch (err) {
+    console.error(`GRESKA `, err.message);
+    next(err);
+  }
+});
+
+router.get('/:id', async function(req, res, next) {
+  try {
+    res.json(await predmet.getSingle(req.params.id));
+  } catch (err) {
+    console.error(`GRESKA `, err.message);
+    next(err);
+  }
+});
+
 router.post('/', async function(req, res, next) {
   try {
     res.json(await predmet.create(req.body));

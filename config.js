@@ -6,6 +6,6 @@ const config = {
     password: "Emir123!",
     database: "rasporedapp",
   },
-  listPerPage: 10,
+  listPerPage: 300000,
 };
 module.exports = config;

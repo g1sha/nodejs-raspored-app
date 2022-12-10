@@ -16,6 +16,18 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getSingle(skolaid){
+  const rows = await db.query(
+    `SELECT id,naziv,adresa,login,sifra,email FROM skola WHERE id=${skolaid}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 module.exports = {
-  getMultiple
+  getMultiple,
+  getSingle
 }

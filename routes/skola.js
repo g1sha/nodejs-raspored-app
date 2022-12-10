@@ -11,4 +11,13 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.get('/:id', async function(req, res, next) {
+  try {
+    res.json(await skola.getSingle(req.params.id));
+  } catch (err) {
+    console.error(`GRESKA `, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;
