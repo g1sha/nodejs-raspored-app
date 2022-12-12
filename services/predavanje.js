@@ -26,7 +26,7 @@ async function create(predmet){
   let message = 'GRESKA';
 
   if (result.affectedRows) {
-    message = 'Uspjesno !';
+    message = {insertid:result.insertId,predmet_id:predmet.predmet_id,nastavnik_id:predmet.nastavnik_id,grupa_id:predmet.grupa_id,broj_casova:predmet.broj_casova,skola_id:predmet.skola_id};
   }
 
   console.log(`${predmet.predmet_id},${predmet.nastavnik_id},${predmet.grupa_id},${predmet.broj_casova},${predmet.skola_id}`);
