@@ -29,6 +29,15 @@ router.get('/:id', async function(req, res, next) {
   }
 });
 
+router.delete('/:id', async function(req, res, next) {
+  try {
+    res.json(await predmet.drop(req.params.id));
+  } catch (err) {
+    console.error(`GRESKA `, err.message);
+    next(err);
+  }
+});
+
 router.post('/', async function(req, res, next) {
   try {
     res.json(await predmet.create(req.body));

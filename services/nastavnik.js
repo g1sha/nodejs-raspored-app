@@ -16,6 +16,16 @@ async function getMultiple(page = 1){
   }
 }
 
+async function drop(id){
+  const rows = await db.query(
+    `DELETE FROM nastavnik WHERE id=${id}`
+  );
+  return {
+    rows
+  }
+}
+
 module.exports = {
-  getMultiple
+  getMultiple,
+  drop
 }

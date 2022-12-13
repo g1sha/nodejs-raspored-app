@@ -34,7 +34,17 @@ async function create(predmet){
   return {message};
 }
 
+async function drop(id){
+  const rows = await db.query(
+    `DELETE FROM predavanje where id=${id}`
+  );
+  return {
+    rows
+  }
+}
+
 module.exports = {
   getMultiple,
-  create
+  create,
+  drop
 }

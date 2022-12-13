@@ -38,6 +38,16 @@ async function getSingle(predmetid){
   }
 }
 
+async function drop(predmetid){
+  const rows = await db.query(
+    `DELETE FROM predmet WHERE id=${predmetid}`
+  );
+
+  return {
+    rows
+  }
+}
+
 async function create(predmet){
   const result = await db.query(
     `INSERT INTO predmet 
@@ -59,5 +69,6 @@ module.exports = {
   getMultiple,
   create,
   getSingle,
-  getQuery
+  getQuery,
+  drop
 }

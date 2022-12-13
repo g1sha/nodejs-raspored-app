@@ -11,4 +11,13 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.delete('/:id', async function(req, res, next) {
+  try {
+    res.json(await grupa.drop(req.params.id));
+  } catch (err) {
+    console.error(`GRESKA `, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

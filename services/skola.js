@@ -27,7 +27,18 @@ async function getSingle(skolaid){
   }
 }
 
+async function drop(skolaid){
+  const rows = await db.query(
+    `DELETE FROM skola WHERE id=${skolaid}`
+  );
+
+  return {
+    rows
+  }
+}
+
 module.exports = {
   getMultiple,
-  getSingle
+  getSingle,
+  drop
 }
