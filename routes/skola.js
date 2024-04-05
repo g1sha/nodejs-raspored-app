@@ -20,6 +20,15 @@ router.get('/:id', async function(req, res, next) {
   }
 });
 
+router.post('/', async function(req, res, next) {
+  try {
+    res.json(await skola.dodaj(req.body));
+  } catch (err) {
+    console.error(`Greska`, err.message);
+    next(err);
+  }
+});
+
 router.delete('/:id', async function(req, res, next) {
   try {
     res.json(await skola.drop(req.params.id));

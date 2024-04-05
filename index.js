@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+
 const cors = require('cors');
 
 const swaggerUI = require('swagger-ui-express');
@@ -15,6 +16,7 @@ const rasporedRouter = require('./routes/raspored');
 const skolaRouter = require('./routes/skola');
 const terminRouter = require('./routes/termin');
 const ucionicaRouter = require('./routes/ucionica');
+const loginRouter = require('./routes/login');
 const logicRouter = require('./routes/logic');
 
 
@@ -26,12 +28,21 @@ app.use(
     extended: true,
   })
 );
+
+// app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, login");
+  next();
+});
+
 app.use(
   '/swagger',
   swaggerUI.serve, 
   swaggerUI.setup(swaggerFile)
 );
-app.use(cors());
 
 
 app.get("/", (req, res) => {
@@ -103,6 +114,15 @@ app.use((err, req, res, next) => {
 
 // Ucionica 
 app.use("/ucionica", ucionicaRouter);
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  console.error(err.message, err.stack);
+  res.status(statusCode).json({ message: err.message });
+  return;
+});
+
+// Login 
+app.use("/login", loginRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);

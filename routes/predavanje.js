@@ -11,6 +11,15 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.get('/filter/', async function(req, res, next) {
+  try {
+    res.json(await predavanje.getQuery(req.query.skola_id));
+  } catch (err) {
+    console.error(`GRESKA `, err.message);
+    next(err);
+  }
+});
+
 router.post('/', async function(req, res, next) {
   try {
     res.json(await predavanje.create(req.body));

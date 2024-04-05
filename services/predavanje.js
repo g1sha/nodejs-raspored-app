@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getQuery(skola_id){
+  const rows = await db.query(
+    `SELECT id,predmet_id,nastavnik_id,grupa_id, broj_casova, skola_id FROM predavanje WHERE skola_id=${skola_id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(predmet){
   const result = await db.query(
     `INSERT INTO predavanje(predmet_id, nastavnik_id, grupa_id, broj_casova, skola_id) 
@@ -46,5 +57,6 @@ async function drop(id){
 module.exports = {
   getMultiple,
   create,
+  getQuery,
   drop
 }

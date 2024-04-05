@@ -10,7 +10,7 @@ router.post('/', async function(req, res, next) {
     
   const options = {
     "method": "POST",
-    "hostname": "logic.leftjoin.ba",
+    "hostname": "raspored-app-logic.leftjoin.ba",
     "port": null,
     "path": "/timeTable/solve?=",
     "headers": {

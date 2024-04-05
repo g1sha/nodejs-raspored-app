@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const raspored = require('../services/raspored');
+const login = require('../services/login');
 
 router.get('/', async function(req, res, next) {
   try {
-    res.json(await raspored.getMultiple(req.query.page));
+    res.json(await login.getMultiple(req.query.page));
   } catch (err) {
     console.error(`GRESKA `, err.message);
     next(err);
@@ -12,17 +12,17 @@ router.get('/', async function(req, res, next) {
 });
 
 router.post('/', async function(req, res, next) {
-  try {
-    res.json(await raspored.dodaj(req.body));
-  } catch (err) {
-    console.error(`Greska`, err.message);
-    next(err);
-  }
-});
+    try {
+      res.json(await login.provjeri(req.body));
+    } catch (err) {
+      console.error(`Greska`, err.message);
+      next(err);
+    }
+  });
 
 router.delete('/:id', async function(req, res, next) {
   try {
-    res.json(await raspored.drop(req.params.id));
+    res.json(await login.drop(req.params.id));
   } catch (err) {
     console.error(`GRESKA `, err.message);
     next(err);
